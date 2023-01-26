@@ -1,0 +1,175 @@
+\documentclass{article}
+\usepackage{amsfonts, amsthm, amsmath, amssymb, mathtools, ulem, mathrsfs, physics, esint, siunitx, tikz-cd}
+\usepackage{pdfpages, fullpage, color, microtype, cancel, textcomp, markdown, hyperref, graphicx}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\graphicspath{{./images/}}
+\usepackage[english]{babel}
+\usepackage[autostyle, english=american]{csquotes}
+\MakeOuterQuote{"}
+\usepackage{xparse}
+\usepackage{tikz}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\script}[1]{\ensuremath{\mathcalligra{#1}}}
+\newcommand{\scr}{\script r}
+
+% fonts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+\def\mbf#1{\mathbf{#1}}
+\def\tbf#1{\textbf{#1}}
+
+% common bold letters
+\def\bP{\mbb{P}}
+\def\bC{\mbb{C}}
+\def\bH{\mbb{H}}
+\def\bI{\mbb{I}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\bN{\mbb{N}}
+
+% brackets
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\lbr}[1]{\left\langle#1\right\rangle}
+
+% vectors
+\renewcommand{\i}{\hat{\imath}}
+\renewcommand{\j}{\hat{\jmath}}
+\renewcommand{\k}{\hat{k}}
+\newcommand{\proj}[2]{\text{proj}_{#2}\br{#1}}
+\newcommand{\m}[2][b]{\begin{#1matrix}#2\end{#1matrix}}
+\newcommand{\arr}[3][\sbr]{#1{\begin{array}{#2}#3\end{array}}}
+
+% misc
+\NewDocumentCommand{\seq}{O{n} O{1} O{\infty} m}{\br{#4}_{{#1}={#2}}^{#3}}
+\NewDocumentCommand{\app}{O{x} O{\infty}}{\xrightarrow{#1\to#2}}
+\newcommand{\sm}{\setminus}
+\newcommand{\sse}{\subseteq}
+\renewcommand{\ss}{\subset}
+\newcommand{\vn}{\varnothing}
+\newcommand{\lc}{\epsilon_{ijk}}
+\newcommand{\ep}{\epsilon}
+\newcommand{\vp}{\varphi}
+\renewcommand{\th}{\theta}
+\newcommand{\cjg}[1]{\overline{#1}}
+\newcommand{\inv}{^{-1}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\newcommand{\ans}{\tbf{Ans. }}
+\newcommand{\pf}{\tbf{Pf. }}
+\newcommand{\imp}{\implies}
+\newcommand{\impleft}{\reflectbox{$\implies$}}
+\newcommand{\ck}{\frac1{4\pi\ep_0}}
+\newcommand{\ckb}{4\pi\ep_0}
+\newcommand{\sto}{\longrightarrow}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\intt}{int}
+\DeclareMathOperator{\bd}{bd}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\fxn}[5]{#1:\begin{array}{rcl}#2&\longrightarrow & #3\\[-0.5mm]#4&\longmapsto &#5\end{array}}
+\newcommand{\sep}[1][.5cm]{\vspace{#1}}
+\DeclareMathOperator{\card}{card}
+\renewcommand{\ip}[2]{\lbr{#1,#2}}
+\renewcommand{\bar}{\overline}
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\Arg}{Arg}
+
+% title
+\title{Complex Analysis HW 1}
+\author{Ryan Chen}
+\date{}
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+	
+\maketitle
+
+
+
+\tbf{Note.} Define $\cis\theta:=\cos\theta+i\sin\theta$.
+\sep
+
+	
+
+\tbf{9.2.} \pf Write $z=x+yi$ and $w=u+vi$.
+
+\begin{enumerate}
+	
+\item
+$$\bar{z+w} = \bar{(x+u)+(y+v)i} = (x+u) - (y+v)i = (x-yi) + (u-vi) = \bar z + \bar w$$
+
+\item
+$$\bar{zw} = \bar{(xu-yv)+(xv+yu)i} = (xu-yv) - (xv+yu)i = xu - xvi - yui - yv = (x-yi)(u-vi) = \bar z\bar w$$
+
+\end{enumerate}
+\sep
+
+
+
+\tbf{11.2.} \ans Set $r:=|z|,~s:=|w|,~\theta:=\Arg z,~\vp:=\Arg w$. Then $zw=rs\cis(\theta+\vp)$, so that
+$$\Arg(zw) = \theta+\vp
+\iff -\pi < \theta+\vp \le \pi
+\iff -\pi-\vp< \theta \le \pi-\vp$$
+\sep
+
+
+
+\tbf{13.2.} \ans
+$$(z-1)^4 = z^4
+\iff z^4-(z-1)^4=0
+\iff [z^2-(z-1)^2][z^2+(z-1)^2]=0
+\iff z^2-(z-1)^2=0 \text{ or } z^2+(z-1)^2=0$$
+In the first above case,
+$$0 = z^2-(z^2-2z+1) = 2z-1
+\iff z=\frac12$$
+In the second above case,
+$$0 = z^2+z^2-2z+1 = 2z^2-2z+1
+\iff z = \frac14\sbr{2\pm\sqrt{4-4(2)(1)}}
+= \frac14\sbr{2\pm\sqrt{-4}}
+= \frac14\sbr{2\pm 2i}
+= \frac12\sbr{1\pm i}$$
+Thus the solutions are $z=\frac12,\frac12\sbr{1\pm i}$.
+\sep
+
+
+
+\tbf{15.2.} \pf Since $|r\cis\th|=|r||\cis\th|=|r|<1$, the following geometric series converges.
+$$\sum_{n\ge0}(r\cis\th)^n = \frac{1}{1-r\cis\th}
+= \frac{1-r\cos\th+ir\sin\th}{(1-r\cos\th-ir\sin\th)(1-r\cos\th+ir\sin\th)}
+= \frac{1-r\cos\th+ir\sin\th}{(1-r\cos\th)^2+r^2\sin^2\th}$$
+$$= \frac{1-r\cos\th+ir\sin\th}{1-2r\cos\th+r^2\cos^2\th+r^2\sin^2\th}
+= \frac{1-r\cos\th+ir\sin\th}{1+r^2-2r\cos\th}$$
+Now by de Moivre's formula, for all $n\ge0$,
+$$(r\cis\th)^n = r^n\cis^n\th = r^n\cis n\th = r^n\cos n\th+ir^n\sin n\th$$
+so that
+$$\sum_{n\ge0}(r\cis\th)^n = \sum_{n\ge0}r^n\cos n\th + i\sum_{n\ge0}r^n\sin n\th$$
+Using the above calculation,
+$$\sum_{n\ge0}r^n\cos n\th + i\sum_{n\ge0}r^n\sin n\th = \frac{1-r\cos\th+ir\sin\th}{1+r^2-2r\cos\th}$$
+Equating real parts,
+$$\sum_{n\ge0}r^n\cos n\th = \frac{1-r\cos\th}{1+r^2-2r\cos\th}$$
+\sep
+
+
+
+\tbf{26.2.} \pf Euler's formula gives
+$$\exp[i(a+b)] = \cos(a+b) + i\sin(a+b)$$
+The addition formula for exp gives
+$$\exp[i(a+b)] = \exp[ia+ib]
+= \exp(ia)\exp(ib)$$
+$$= (\cos a+i\sin a)(\cos b+i\sin b)
+= [\cos a\cos b - \sin a\sin b] + i[\cos a\sin b + \sin a\cos b]$$
+Equating real and imaginary parts,
+$$\cos(a+b) = \cos a\cos b - \sin a\sin b$$
+$$\sin(a+b) = \cos a\sin b + \sin a\cos b$$
+	
+\end{document}
