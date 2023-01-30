@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.26)  30 JAN 2023 04:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.26)  27 JAN 2023 16:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./hw1.tex
-(hw1.tex
+**./quiz1.tex
+(quiz1.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-01-16>
 (C:\Users\RyanPC\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -983,8 +983,8 @@ Package: calligra 2012/04/10 v1.9 LaTeX package calligra
 )
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
- (hw1.aux)
-\openout1 = `hw1.aux'.
+ (quiz1.aux)
+\openout1 = `quiz1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
 LaTeX Font Info:    ... okay on input line 93.
@@ -1085,9 +1085,9 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 )
 Package hyperref Info: Link coloring OFF on input line 93.
 
-(hw1.out) (hw1.out)
+(quiz1.out) (quiz1.out)
 \@outlinefile=\write7
-\openout7 = `hw1.out'.
+\openout7 = `quiz1.out'.
 
 Package csquotes Info: Making character " active on input line 93.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 96.
@@ -1120,21 +1120,25 @@ LaTeX Font Info:    Trying to load font information for U+esint on input line 9
 (C:\Users\RyanPC\AppData\Local\Programs\MiKTeX\tex/latex/esint\uesint.fd
 File: uesint.fd 
 )
+Underfull \hbox (badness 10000) in paragraph at lines 104--105
+
+ []
+
 [1
 
-{C:/Users/RyanPC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-(hw1.aux)
-Package rerunfilecheck Info: File `hw1.out' has not changed.
+{C:/Users/RyanPC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+(quiz1.aux)
+Package rerunfilecheck Info: File `quiz1.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 33798 strings out of 476465
- 717184 string characters out of 2790746
- 1878324 words of memory out of 3000000
- 53508 multiletter control sequences out of 15000+600000
+ 33793 strings out of 476465
+ 717156 string characters out of 2790746
+ 1861324 words of memory out of 3000000
+ 53506 multiletter control sequences out of 15000+600000
  521561 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,6n,118p,1002b,958s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 116i,6n,118p,1004b,957s stack positions out of 10000i,1000n,20000p,200000b,80000s
 <C:/Users/RyanPC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmbx10.pfb><C:/Users/RyanPC/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmex10.pfb><C:/Users/RyanPC/AppData/Local/Programs/MiKTeX/fonts/type
@@ -1146,11 +1150,10 @@ Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/R
 yanPC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:
 /Users/RyanPC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
 10.pfb><C:/Users/RyanPC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmsy7.pfb><C:/Users/RyanPC/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/symbols/msbm10.pfb>
-Output written on hw1.pdf (2 pages, 127853 bytes).
+ts/symbols/msbm10.pfb>
+Output written on quiz1.pdf (1 page, 107232 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
- 5 named destinations out of 1000 (max. 500000)
+ 64 PDF objects out of 1000 (max. 8388607)
+ 2 named destinations out of 1000 (max. 500000)
  16397 words of extra memory for PDF output out of 17280 (max. 10000000)
 

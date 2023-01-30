@@ -84,9 +84,9 @@
 \DeclareMathOperator{\Arg}{Arg}
 
 % title
-\title{Complex Analysis HW 1}
+\title{Complex Analysis Quiz 1}
 \author{Ryan Chen}
-\date{}
+%\date{\today}
 \setlength{\parindent}{0pt}
 
 
@@ -99,81 +99,18 @@
 \tbf{Note.} Define $\cis\theta:=\cos\theta+i\sin\theta$.
 \sep
 
-	
-
-\tbf{9.2.} \pf Write $z=x+yi$ and $w=u+vi$.
-
-\begin{enumerate}
-	
-\item
-$$\bar{z+w} = \bar{(x+u)+(y+v)i} = (x+u) - (y+v)i = (x-yi) + (u-vi) = \bar z + \bar w$$
-
-\item
-$$\bar{zw} = \bar{(xu-yv)+(xv+yu)i} = (xu-yv) - (xv+yu)i = xu - xvi - yui - yv = (x-yi)(u-vi) = \bar z\bar w$$
-
-\end{enumerate}
-\sep
 
 
+Solve $(z-1)^6=z^6$.\\
 
-\tbf{11.2.} \ans Set $r:=|z|,~s:=|w|,~\theta:=\Arg z,~\vp:=\Arg w$. Then $zw=rs\cis(\theta+\vp)$, so that
-$$\Arg(zw) = \theta+\vp
-\iff -\pi < \theta+\vp \le \pi
-\iff -\pi-\vp< \theta \le \pi-\vp$$
-In other words, $\Arg(zw)=\Arg z+\Arg w$ iff $-\pi-\Arg w<\Arg z\le\pi-\Arg w$.
-\sep
-
-
-
-\tbf{13.2.} \ans We know $z\ne1$ since plugging $z=1$ gives $0=1$. Now
-$$\br{\frac{z}{z-1}}^4 = 1 = \cis(2\pi k),~k\in\bZ
-\imp \frac{z}{z-1} = \cis\br{\frac{\pi k}{2}},~1\le k\le 3$$
-Taking the 4th root and the condition $z\ne1$ means we take $1\le k\le 3$. Then
-$$z = z\cis\br{\frac{\pi k}{2}} - \cis\br{\frac{\pi k}{2}}
-\imp z\sbr{\cis\br{\frac{\pi k}{2}}-1} = \cis\br{\frac{\pi k}{2}}
-\imp z = \frac{\cis\br{\frac{\pi k}{2}}}{\cis\br{\frac{\pi k}{2}}-1}$$
+\ans We know $z\ne1$ since plugging in $z=1$ gives $0=1$. So
+$$\br{\frac{z}{z-1}}^6 = 1 = \cis(2\pi k),~k\in\bZ
+\imp \frac{z}{z-1} = \cis\br{\frac{\pi k}{3}},~1\le k\le 5$$
+Taking the 6th root, and the condition $z\ne1$ means we take $1\le k\le 5$. Then
+$$z = z\cis\br{\frac{\pi k}{3}} - \cis\br{\frac{\pi k}{3}}
+\imp z\sbr{\cis\br{\frac{\pi k}{3}}-1} = \cis\br{\frac{\pi k}{3}}
+\imp z = \frac{\cis\br{\frac{\pi k}{3}}}{\cis\br{\frac{\pi k}{3}}-1}$$
 Plugging in the values of $k$ gives
-$$\frac{\cis\br{\frac{\pi(1)}{2}}}{\cis\br{\frac{\pi (1)}{2}}-1}
-= \frac{i}{i-1}\cdot\frac{-i-1}{-i-1}
-= \frac{1-i}{2}$$
-$$\frac{\cis\br{\frac{\pi 2}{2}}}{\cis\br{\frac{\pi 2}{2}}-1}
-= \frac{-1}{-1-1}
-= \frac12$$
-$$\frac{\cis\br{\frac{\pi 3}{2}}}{\cis\br{\frac{\pi 3}{2}}-1}
-= \frac{-i}{-i-1}\cdot\frac{i-1}{i-1}
-= \frac{1+i}{2}$$
-Thus the solutions are $z=\frac12,\frac12(1\pm i)$.
-\sep
-
-
-
-\tbf{15.2.} \pf Since $|r\cis\th|=|r||\cis\th|=|r|<1$, the following geometric series converges.
-$$\sum_{n\ge0}(r\cis\th)^n = \frac{1}{1-r\cis\th}
-= \frac{1-r\cos\th+ir\sin\th}{(1-r\cos\th-ir\sin\th)(1-r\cos\th+ir\sin\th)}
-= \frac{1-r\cos\th+ir\sin\th}{(1-r\cos\th)^2+r^2\sin^2\th}$$
-$$= \frac{1-r\cos\th+ir\sin\th}{1-2r\cos\th+r^2\cos^2\th+r^2\sin^2\th}
-= \frac{1-r\cos\th+ir\sin\th}{1+r^2-2r\cos\th}$$
-Now by de Moivre's formula, for all $n\ge0$,
-$$(r\cis\th)^n = r^n\cis^n\th = r^n\cis n\th = r^n\cos n\th+ir^n\sin n\th$$
-so that
-$$\sum_{n\ge0}(r\cis\th)^n = \sum_{n\ge0}r^n\cos n\th + i\sum_{n\ge0}r^n\sin n\th$$
-Using the above calculation,
-$$\sum_{n\ge0}r^n\cos n\th + i\sum_{n\ge0}r^n\sin n\th = \frac{1-r\cos\th+ir\sin\th}{1+r^2-2r\cos\th}$$
-Equating real parts,
-$$\sum_{n\ge0}r^n\cos n\th = \frac{1-r\cos\th}{1+r^2-2r\cos\th}$$
-\sep
-
-
-
-\tbf{26.2.} \pf Euler's formula gives
-$$\exp[i(a+b)] = \cos(a+b) + i\sin(a+b)$$
-The addition formula for exp gives
-$$\exp[i(a+b)] = \exp[ia+ib]
-= \exp(ia)\exp(ib)$$
-$$= (\cos a+i\sin a)(\cos b+i\sin b)
-= [\cos a\cos b - \sin a\sin b] + i[\cos a\sin b + \sin a\cos b]$$
-Equating real and imaginary parts,
-$$\cos(a+b) = \cos a\cos b - \sin a\sin b$$
-$$\sin(a+b) = \cos a\sin b + \sin a\cos b$$
+$$z = \frac12,~\frac12\br{1\pm\frac{i}{\sqrt3}},~\frac12(1\pm i\sqrt3)$$
 	
 \end{document}
