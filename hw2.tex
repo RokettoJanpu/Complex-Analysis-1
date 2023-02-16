@@ -87,7 +87,7 @@
 % title
 \title{Complex Analysis HW 2}
 \author{Ryan Chen}
-%\date{\today}
+\date{}
 \setlength{\parindent}{0pt}
 
 
@@ -122,10 +122,10 @@ $$v(x+h,y+k) = v(x,y) + hv_x(x,y) + kv_y(x,y) + o(\norm{(h,k)})
 Using these expressions,
 $$\frac{f(x+iy+h+ik) - f(x+iy)}{h+ik}
 = \frac{1}{h+ik}\sbr{u(x+h,y+k) - u(x,y) + iv(x+h,y+k) - iv(x,y)}$$
-$$= \frac{1}{h+ik}\sbr{hA - kB + ihB + ikA + o(\norm{(h,k)}}
+$$= \frac{1}{h+ik}\sbr{hA - kB + ihB + ikA + o(\norm{(h,k)})}
 = \frac{1}{h+ik}\sbr{hA - kB + ihB + ikA} + \frac{o{\norm{(h,k)}}}{h+ik}$$
 The second term vanishes as $(h,k)\to(0,0)$ since
-$$\frac{o{\norm{(h,k)}}}{h+ik} \le \abs{\frac{o{\norm{(h,k)}}}{h+ik}}
+$$\frac{o{\norm{(h,k)}}}{h+ik} \le \abs{\frac{o(\norm{(h,k)})}{h+ik}}
 = \frac{\abs{o{\norm{(h,k)}}}}{\norm{(h,k)}}
 \app[(h,k)][(0,0)] 0$$
 The first term becomes
@@ -141,7 +141,7 @@ $$f'(z) = \lim_{w\to0}\frac{f(z+w)-f(z)}{w}
 
 
 
-\tbf{P36.3.} \pf Write $f=\frac PQ$ for polynomials $P$ and $Q$ with no common roots. Let $w_1,\dots,w_n$ be the roots of $P$ and $u_1,\dots,u_m$ be the roots of $Q$. With $a_n$ the lead coefficient of $P$,
+\tbf{P36.3.} \pf Write $f=\frac PQ$ for polynomials $P$ and $Q$ with no common roots. Reorient our view of the complex plane so that $L$ coincides with the imaginary axis, with the roots $w_1,\dots,w_n$ of $P$ to the left and the roots $u_1,\dots,u_m$ of $Q$ to the right. With $a_n$ the lead coefficient of $P$,
 $$P(z) = a_n\prod_{k=1}^n (z-w_k)
 \imp P'(z) = a_n\sum_{k=1}^n\prod_{j=1\atop j\ne k}^n(z-w_j)
 = a_n\sum_{k=1}^n\frac{(z-w_1)(z-w_n)}{z-w_k}
@@ -162,6 +162,8 @@ $$\imp \Re \frac{P'(z)}{P(z)} \ne \Re\frac{Q'(z)}{Q(z)}
 By the quotient rule,
 $$f'=\frac{P'Q-PQ'}{Q^2}$$
 which along with (1) means $f'(it)\ne0$ for all $t\in\bR$.
+\sep
+
 
 
 \tbf{P40.2.} \pf Using the power series for $|z-w|<|w|$,
