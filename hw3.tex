@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage{amsfonts, amsthm, amsmath, amssymb, mathtools, ulem, mathrsfs, physics, esint, siunitx, tikz-cd}
+\usepackage{pdfpages, fullpage, color, microtype, cancel, textcomp, markdown, hyperref, graphicx}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\graphicspath{{./images/}}
+\usepackage[english]{babel}
+\usepackage[autostyle, english=american]{csquotes}
+\MakeOuterQuote{"}
+\usepackage{xparse}
+\usepackage{tikz}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\script}[1]{\ensuremath{\mathcalligra{#1}}}
+\newcommand{\scr}{\script r}
+
+% fonts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+\def\mbf#1{\mathbf{#1}}
+\def\tbf#1{\textbf{#1}}
+
+% common bold letters
+\def\bP{\mbb{P}}
+\def\bC{\mbb{C}}
+\def\bH{\mbb{H}}
+\def\bI{\mbb{I}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\bN{\mbb{N}}
+
+% brackets
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\lbr}[1]{\left\langle#1\right\rangle}
+
+% vectors
+\renewcommand{\i}{\hat{\imath}}
+\renewcommand{\j}{\hat{\jmath}}
+\renewcommand{\k}{\hat{k}}
+\newcommand{\proj}[2]{\text{proj}_{#2}\br{#1}}
+\newcommand{\m}[2][b]{\begin{#1matrix}#2\end{#1matrix}}
+\newcommand{\arr}[3][\sbr]{#1{\begin{array}{#2}#3\end{array}}}
+
+% misc
+\NewDocumentCommand{\seq}{O{n} O{1} O{\infty} m}{\br{#4}_{{#1}={#2}}^{#3}}
+\NewDocumentCommand{\app}{O{x} O{\infty}}{\xrightarrow{#1\to#2}}
+\newcommand{\sm}{\setminus}
+\newcommand{\sse}{\subseteq}
+\renewcommand{\ss}{\subset}
+\newcommand{\vn}{\varnothing}
+\newcommand{\lc}{\epsilon_{ijk}}
+\newcommand{\ep}{\epsilon}
+\newcommand{\vp}{\varphi}
+\renewcommand{\th}{\theta}
+\newcommand{\cjg}[1]{\overline{#1}}
+\newcommand{\inv}{^{-1}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\newcommand{\ans}{\tbf{Ans. }}
+\newcommand{\pf}{\tbf{Pf. }}
+\newcommand{\imp}{\implies}
+\newcommand{\impleft}{\reflectbox{$\implies$}}
+\newcommand{\ck}{\frac1{4\pi\ep_0}}
+\newcommand{\ckb}{4\pi\ep_0}
+\newcommand{\sto}{\longrightarrow}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\intt}{int}
+\DeclareMathOperator{\bd}{bd}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\fxn}[5]{#1:\begin{array}{rcl}#2&\longrightarrow & #3\\[-0.5mm]#4&\longmapsto &#5\end{array}}
+\newcommand{\sep}[1][.5cm]{\vspace{#1}}
+\DeclareMathOperator{\card}{card}
+\renewcommand{\ip}[2]{\lbr{#1,#2}}
+\renewcommand{\bar}{\overline}
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Ln}{Ln}
+
+% title
+\title{Complex Analysis HW 3}
+\author{Ryan Chen}
+%\date{\today}
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+	
+\maketitle
+
+
+
+\tbf{P60.6.} \pf Fix $z\in R$ and write $f(z)=u+iv$.
+$$|f(z) - 1| < 1 \imp (u-1)^2 \le (u-1)^2 + v^2 < 1
+\imp |u - 1| < 1
+\imp -1 < u - 1 < 1
+\imp u > 0$$
+so $f(R)$ is contained in the right half plane, on which $\Ln$ is analytic. With $f$ analytic on $R$, this means $\Ln f$ is analytic on $R$, and by the chain rule, $(\Ln f)'=\frac{f'}{f}$. Then $\gamma$ being closed gives us $\int_\gamma\frac{f'}{f}=0$.
+\sep
+
+
+\tbf{P60.7.} Since $Q_N$ is a square with side length $2N\pi$, the length of $Q_N$ is
+$$L_N := \int_{Q_N}|dz| = 4 \cdot 2N\pi = 8N\pi$$
+Set $f(z):=\frac1{z\cos z}$. We seek a bound on $f$ along $Q_N$. First examining the left and right sides of $Q_N$, write $z=\pm N\pi+ti,~-N\pi\le t\le N\pi$.
+$$\cos z = \cos(\pm N\pi)\cos(it) - \sin(\pm N\pi)\sin(it) = (-1)^N\cosh t
+\imp |\cos z| = \cosh t \ge 1
+\imp \frac{1}{|\cos z|} \le 1$$
+$$|z|^2 = (N\pi)^2 + t^2 \ge (N\pi)^2
+\imp \frac{1}{|z|} \le \frac{1}{N\pi}$$
+$$|f(z)| = \frac{1}{|z||\cos z|} \le \frac{1}{N\pi}$$
+Then examining the top and bottom sides of $Q_N$, write $z=t\pm N\pi i,~-N\pi\le t\le N\pi$.
+$$\cos z = \cos(t)\cos(\pm N\pi i) - \sin(t)\sin(\pm N\pi i) = \cosh N\pi\cos t \mp i\sinh N\pi \sin t $$
+$$\imp |\cos z| = \cosh^2N\pi \cos^2t + \sinh^2N\pi \sin^2t
+= (\sinh^2N\pi + 1)\cos^2t + \sinh^2N\pi \sin^2t$$
+$$= \sinh^2N\pi(\cos^2t + \sin^2t) + \cos^2t
+= \sinh^2N\pi+ \cos^2t
+\ge \sinh^2N\pi
+\ge \sinh^2\pi
+\ge 1$$
+$$\imp \frac{1}{|\cos z|} \le 1$$
+$$|z|^2 = t^2 + (N\pi)^2 \ge (N\pi)^2 \imp \frac{1}{|z|} \le \frac{1}{N\pi}$$
+$$|f(z)| = \frac{1}{|z||\cos z|} \le \frac{1}{N\pi}$$
+Thus $|f|\le \frac{1}{N\pi}$ on $Q_N$. We then have a constant bound on the integral below.
+$$\abs{\int_{Q_N}f(z)dz} \le \frac{1}{N\pi}L_N = \frac{8N\pi}{N\pi} = 8$$
+\sep
+
+
+
+\tbf{P66.1.} \pf With $f$ analytic hence holomorphic on $D$, for $z_0\in D$ there exists $r>0$ such that for $|z-z_0|<r$,
+$$f(z) = \sum_{j\ge0}a_jz^j$$
+Now set
+$$F(z) := \sum_{j\ge0}\frac{1}{j+1}a_jz^{j+1}$$
+so that $F'(z)=f(z)$ for $|z-z_0|<r$ (in particular $F'(z_0)=f(z_0)$), giving $F$ as holomorphic at $z_0$.
+\sep
+
+
+
+\tbf{P68.} First we find the Maclaurin series for $z\cosh z^2$. Using the Maclaurin series for exp,
+$$e^z = \sum_{n\ge0}\frac{z^n}{n!} \imp e^{-z} = \sum{n\ge0}\frac{(-1)^nz^n}{n!}$$
+Due to the $(-1)^n$ term, adding the two series will cancel the odd terms and double the even terms.
+$$\cosh z = \frac12(e^z - e^{-z}) = \frac12\sum_{n\ge0}2\frac{z^{2n}}{(2n)!} = \sum_{n\ge0}\frac{z^{2n}}{(2n)!}$$
+We then get the Maclaurin series for $z\cosh z^2$.
+$$\imp \cosh z^2 = \sum_{n\ge0}\frac{z^{4n}}{(2n)!}
+\imp \boxed{z\cosh z^2 = \sum_{n\ge0}\frac{z^{4n+1}}{(2n)!}}$$
+Perform the ratio test for convergence.
+$$\abs{\frac{z^{4n+5}}{(2n+2)!} \frac{(2n)!}{z^{4n+1}}} = \frac{|z|^4}{(2n+2)(2n+1)} \app[n][\infty] 0$$
+The series converges absolutely for all $z$.\\
+
+Using the formula for the geometric series,
+$$\frac{1}{1-z} = \sum_{n\ge0}z^n
+\imp \frac{1}{z^4+9} = \frac19 \frac{1}{1-(-z^4/9)}
+= \frac19 \sum_{n\ge0}\br{-\frac{z^4}{9}}^n
+= \frac19 \sum_{n\ge0}\frac{(-1)^nz^{4n}}{9^n}$$
+$$\imp \boxed{\frac{z}{z^4+9} = \frac19 \sum_{n\ge0}\frac{(-1)^nz^{4n+1}}{9^n}}$$
+Perform the ratio test. The series converges absolutely iff
+$$\abs{\frac{(-1)^{n+1}z^{4n+5}}{9^{n+1}} \frac{9^n}{(-1)^nz^{4n+1}}} = \frac{|z|^4}{9} < 1
+\iff |z|^4 < 9
+\iff |z| < \sqrt3$$
+\sep
+
+
+
+\tbf{P71.3.} \pf For all $z$, the sequence $z+n$ diverges to $\infty$ as $n\to\infty$, so $f_n$ has no piecewise limit, hence no uniform limit, on any (nonempty) subset of $\bC$. Thus $f_n$ does not converge normally to any function $\bC\to\bC$.\\
+
+Now fix $z=x+yi\in\bC$ and consider the sequence $z+n$ on the Riemann sphere with the spherical metric $\chi$. It converges to $\infty$ since
+$$\chi(z+n,\infty) = \frac{2}{[1+|z+n|^2]^{1/2}}
+= \frac{2}{[1+(x+n)^2+y^2]^{1/2}}
+= \frac{2}{[n^2+2xn+x^2+y^2+1]^{1/2}}
+\le \frac{2}{[n^2+2xn]^{1/2}} \cdot \frac{1/n}{[1/n^2]^{1/2}}$$
+$$= \frac{2/n}{[1+2x/n]^{1/2}}
+\app[n][\infty]
+\frac{0}{[1+0]^{1/2}}
+= 0$$
+
+\end{document}
