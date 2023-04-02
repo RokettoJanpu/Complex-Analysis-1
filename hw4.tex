@@ -1,0 +1,360 @@
+\documentclass{article}
+\usepackage{amsfonts, amsthm, amsmath, amssymb, mathtools, ulem, mathrsfs, physics, esint, siunitx, tikz-cd}
+\usepackage{pdfpages, fullpage, color, microtype, cancel, textcomp, markdown, hyperref, graphicx}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\graphicspath{{./images/}}
+\usepackage[english]{babel}
+\usepackage[autostyle, english=american]{csquotes}
+\MakeOuterQuote{"}
+\usepackage{xparse}
+\usepackage{tikz}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\script}[1]{\ensuremath{\mathcalligra{#1}}}
+\newcommand{\scr}{\script r}
+
+% fonts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+\def\mbf#1{\mathbf{#1}}
+\def\tbf#1{\textbf{#1}}
+
+% common bold letters
+\def\bP{\mbb{P}}
+\def\bC{\mbb{C}}
+\def\bH{\mbb{H}}
+\def\bI{\mbb{I}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\bN{\mbb{N}}
+
+% brackets
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\lbr}[1]{\left\langle#1\right\rangle}
+
+% vectors
+\renewcommand{\i}{\hat{\imath}}
+\renewcommand{\j}{\hat{\jmath}}
+\renewcommand{\k}{\hat{k}}
+\newcommand{\proj}[2]{\text{proj}_{#2}\br{#1}}
+\newcommand{\m}[2][b]{\begin{#1matrix}#2\end{#1matrix}}
+\newcommand{\arr}[3][\sbr]{#1{\begin{array}{#2}#3\end{array}}}
+
+% misc
+\NewDocumentCommand{\seq}{O{n} O{1} O{\infty} m}{\br{#4}_{{#1}={#2}}^{#3}}
+\NewDocumentCommand{\app}{O{x} O{\infty}}{\xrightarrow{#1\to#2}}
+\newcommand{\sm}{\setminus}
+\newcommand{\sse}{\subseteq}
+\renewcommand{\ss}{\subset}
+\newcommand{\vn}{\varnothing}
+\newcommand{\lc}{\epsilon_{ijk}}
+\newcommand{\ep}{\epsilon}
+\newcommand{\vp}{\varphi}
+\renewcommand{\th}{\theta}
+\newcommand{\cjg}[1]{\overline{#1}}
+\newcommand{\inv}{^{-1}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\newcommand{\ans}{\tbf{Ans. }}
+\newcommand{\pf}{\tbf{Pf. }}
+\newcommand{\imp}{\implies}
+\newcommand{\impleft}{\reflectbox{$\implies$}}
+\newcommand{\ck}{\frac1{4\pi\ep_0}}
+\newcommand{\ckb}{4\pi\ep_0}
+\newcommand{\sto}{\longrightarrow}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\intt}{int}
+\DeclareMathOperator{\bd}{bd}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\fxn}[5]{#1:\begin{array}{rcl}#2&\longrightarrow & #3\\[-0.5mm]#4&\longmapsto &#5\end{array}}
+\newcommand{\sep}[1][.5cm]{\vspace{#1}}
+\DeclareMathOperator{\card}{card}
+\renewcommand{\ip}[2]{\lbr{#1,#2}}
+\renewcommand{\bar}{\overline}
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\Arg}{Arg}
+\newcommand{\ptl}{\partial}
+
+% title
+\title{Complex Analysis HW 4}
+\author{Ryan Chen}
+%\date{\today}
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+
+\maketitle
+
+
+
+\tbf{Note.} Write $\cis t:=\cos t+i\sin t$.
+\sep
+
+
+
+\tbf{P81.3.} Set
+$$g(z) := \frac{z^3}{27}f(z)$$
+so that
+$$|g(z)| = \frac{|z|^3}{27}|f(z)|$$
+Then on $|z|=3$,
+$$|g(z)| \le \frac{3^3}{27}\cdot 1 = 1$$
+and on $|z|=1$,
+$$|g(z)| \le \frac{1^3}{27}\cdot 27 = 1$$
+Thus by the maximum principle, on $1\le |z|\le 3$,
+$$|g(z)|\le 1 \imp |f(z)| \le \frac{27}{|z|^3}$$
+
+
+
+\tbf{P94.2} From $u(z)=z^2+\bar z^2$, set
+$$g(z) := \partial u(z) = 2z$$
+$$G(z) := \int g(z)dz = z^2$$
+$$f(z) := 2G(z) = 2z^2$$
+We see $f$ is entire and check that
+$$\frac12\br{f(z)+\bar{f(z)}} = \frac12\br{2z^2+2\bar z^2} = z^2 + \bar z^2 = u(z)$$
+\sep
+
+
+
+\tbf{P94.4} \pf With $u$ harmonic, there exists an entire function $f$ such that $\Re f=u$. Then $e^f$ is entire and
+$$|e^f| = e^u < e^c$$
+so by Liouville's theorem $e^f$ is constant, hence $f$ is constant. In turn, $u$ is constant.
+\sep
+
+
+
+\tbf{P96.4} Set $u(x,y):=y$ and $v(x,y):=\cosh\pi x\sin\pi y$.
+$$v_{xx} = \pi^2\cosh\pi x\sin\pi y,
+\quad v_{yy} = -\pi^2\cosh\pi x\sin\pi y
+\imp v_{xx} + v_{yy} = 0$$
+Thus $v$ is harmonic. Also, $v\eval_{y=0}=v\eval_{y=1}=0$. Then the function $w:=u+v$ is a sum of harmonic functions hence harmonic, and $w$ satisfies the boundary conditions $w\eval_{y=0}=0$ and $w\eval_{y=1}=1$.
+\sep
+
+
+
+\tbf{P107} \pf Fix $z$ in the unbounded component of $\alpha^c$. The winding number is
+$$n(z,\alpha) = \frac{1}{2\pi i}\int_\alpha \frac{dw}{w-z}$$
+Since $\alpha$ is bounded and closed, $\frac{1}{|w-z|}$ is continuous in $w$ on $\alpha$, so it attains a maximum at some $w_0\in\alpha$.
+$$|n(z,\alpha)| \le \frac{1}{2\pi}\abs{\int_\alpha\frac{dw}{w-z}}
+\le \frac{\mathrm{length}(\alpha)}{2\pi|w_0-z|}
+\app[z][\infty] 0$$
+so that $\lim_{z\to\infty}|n(z,\alpha)|=0$. Thus $|n(z,\alpha)|<1$ for large enough $|z|$. Now $n(z,\alpha)\in\bZ$, so $|n(z,\alpha)|=0$ hence $n(z,\alpha)=0$ for large enough $|z|$. Also $n(z,\alpha)$ must be constant on components of $\alpha^c$, thus $n(z,\alpha)=0$ on the unbounded component of $\alpha^c$.
+\sep
+
+
+
+\tbf{P114.1} The Laurent expansions are:
+
+\begin{enumerate}[label=(\roman*)]
+	
+\item For $0<|z|<2$,
+$$\frac{1}{z(z^2+4)} = \frac{1}{4z(1-(-z^2/4))}
+= \frac{1}{4z}\sum_{k\ge0}\frac{(-1)^kz^{2k}}{4^k}
+= \sum_{k\ge0}\frac{(-1)^kz^{2k-1}}{4^{k+1}}$$
+
+\item For $|z|>2$,
+$$\frac{1}{z(z^2+4)} = \frac{1}{z^3(1-(-4/z^2))}
+= \frac{1}{z^3}\sum_{k\ge0}\frac{(-1)^k4^k}{z^{2k}}
+= \sum_{k\ge0}\frac{(-1)^k4^k}{z^{2k+3}}$$
+
+\item For $0<|z+2i|<2$,
+$$\frac{1}{z(z^2+4)} = \frac{1}{z(z-2i)(z+2i)}
+= \frac{1}{z(z-2i)}\sum_{k\ge0}(z+2i)^k$$
+
+\end{enumerate}
+\sep
+
+
+
+\tbf{P119.1}
+
+\begin{enumerate}[label=(\roman*)]
+	
+\item The function
+$$f(z) = \frac{1}{(z-4)(z^3-1)}$$
+has singularities at $z=4$ and $z=\cis\frac{2\pi k}{3},~0\le k\le 2$, i.e. $z=4,1,-\frac12+\frac{\sqrt3}{2}i,-\frac12+\frac{\sqrt3}{2}i$. Considering the circle $\alpha:|z-2|=\frac52$ has leftmost endpoint $-\frac12$, the singularities that lie inside $\alpha$ are $z=4,1$. We now find
+$$(z-4)f(z) = \frac{1}{z^3-1}
+\app[z][4] \frac{1}{64-1}
+= \frac{1}{63}$$
+so that $\Res(f,4)=\frac{1}{63}$, and
+$$(z-1)f(z) = \frac{1}{(z-4)(z^2+z+1)}
+\app[z][1] \frac{1}{-3(1+1+1)}
+= -\frac19$$
+so that $\Res(f,1)=-\frac19$. Thus
+$$\int_\alpha f(z)dz = 2\pi i[\Res(f,4) + \Res(f,1)]
+= 2\pi i\sbr{\frac{1}{63} - \frac19}
+= 2\pi i\sbr{-\frac{6}{63}}
+= -\frac{4\pi i}{21}$$
+
+
+\item The function
+$$g(z) = \frac{3z^2+2}{(z-1)(z^2+9)}$$
+has singularities at $z=1,\pm 3i$ which all lie within the circle $\beta:|z|=5$. We find
+$$(z-1)g(z) = \frac{3z^2+2}{z^2+9}
+\app[z][1] \frac{3+2}{1+9}
+= \frac{5}{10} 
+= \frac12$$
+so that $\Res(g,1)=\frac12$, and
+$$(z\mp 3i)g(z) = \frac{3z^2+2}{(z-1)(z\pm 3i)}
+\app[z][\pm 3i] \frac{3(-9)+2}{(\pm 3i-1)(\pm 6i)}
+= \frac{-25}{-18\mp 6i}$$
+$$= \frac{25}{18\pm 6i}\frac{18\mp 6i}{18\mp 6i}
+= \frac{450\mp 150i}{324+36}
+= \frac{450\mp 150i}{360}
+= \frac{15\mp 5i}{12}$$
+so that $\Res(g,\pm 3i)=\frac{15\mp 5i}{12}$. Thus
+$$\int_\beta g(z)dz = 2\pi i\sbr{\Res(g,1) + \Res(g,3i) + \Res(g,-3i)}
+= 2\pi i\sbr{\frac12 + \frac{15-5i}{12} + \frac{15+5i}{12}}$$
+$$= 2\pi i\sbr{\frac12 + \frac{30}{12}}
+= 2\pi i\sbr{\frac12 + \frac52}
+= 6\pi i$$
+	
+\end{enumerate}
+\sep
+
+
+
+\tbf{P119.2} 
+
+\begin{enumerate}[label=(\roman*)]
+	
+\item The function
+$$f(z) = \frac{1}{\cosh2z}$$
+has singularities at (write $w=2z=x+iy$)
+$$\cosh2z = 0
+\imp \cosh x\cos y+i\sinh x\sin y = 0
+\imp \cosh x\cos y = 0,~\sinh x\sin y = 0$$
+The first equation gives
+$$\cos y = 0
+\imp y = \frac\pi2+ \pi n,~n\in\bZ$$
+The second equation gives $x=0$ or $y=\pi n$, so it must be the case $x=0$ and $y=\frac\pi2+\pi n$.
+$$w = i\br{\frac\pi2+\pi n}
+\imp z = \frac w2 = \br{\frac\pi4+\frac\pi2n}i$$
+The only singularities that lie within the circle $\gamma:|z|=1$ are for $n=0,-1$, i.e. $z=\pm\frac\pi4i$. Label the points as $z_1$ and $z_2$.
+$$\Res(f,z_j) = \lim_{z\to z_j}(z-z_j)f(z)
+= \lim_{z\to z_j}\frac{z-z_j}{\cosh2z}$$
+Using L'Hoptital's rule,
+$$\Res(f,z_j) = \lim_{z\to z_j}(z-z_j)f(z)\frac{1}{2\sinh2z}
+= \frac{1}{2\sinh2z_j}
+= \frac{1}{2\sinh(\pm\frac\pi2i)}
+= \frac{1}{2i\sin(\pm\frac\pi2)}
+= -\frac{i}{2(\pm 1)}
+= \mp\frac i2$$
+Thus
+$$\int_\gamma f(z)dz = 2\pi i\sbr{\Res(f,\frac\pi4i) + \Res(f,-\frac\pi4i)}
+= 2\pi i\sbr{-\frac i2+\frac i2}
+= 0$$
+
+
+\item The function
+$$g(z) = \cot z = \frac{\cos z}{\sin z}$$
+has singularities at
+$$\sin z = 0
+\imp z = k\pi,~k\in\bZ$$
+The only singularity that lies within the circle $\gamma:|z|=1$ is for $k=0$, i.e. $z=0$.
+$$\Res(g,0) = \lim_{z\to 0}zg(z)
+= \lim_{z\to 0}\frac{z\cos z}{\sin z}$$
+Using L'Hopital's rule,
+$$\Res(g,0) = \lim_{z\to 0}\frac{\cos z-z\sin z}{\cos z}
+= \frac{1 - 0}{1}
+= 1$$
+Thus
+$$\int_\gamma g(z)dz = 2\pi i\Res(g,0) = 2\pi i$$
+
+\end{enumerate}
+\sep
+
+
+
+\tbf{P127.4} \pf Set
+$$I := \int_0^\infty f(x)dx,
+\quad f(z) := e^{iz^2}$$
+Fix large $R>0$ and define the contours
+$$\alpha := [0,R] + C_R - \gamma_R,
+\quad C_R: z = Re^{it},~ 0\le t\le \frac\pi4,
+\quad \gamma_R: z = te^{i\pi/4},~ 0\le t\le R$$
+Since $f$ is analytic on the region enclosed by $\alpha$,
+$$0 = \int_\alpha f(z)dz = \int_{[0,R]}f(z)dz + \int_{C_R}f(z)dz - \int_{\gamma_R}f(z)dz \quad (127.4.1)$$
+
+We compute the third integral. On $\gamma_R$,
+$$z = te^{i\pi/4},~0\le t\le R
+\imp z^2 = t^2e^{i\pi/2} = it^2
+\imp f(z) = e^{-it^2}$$
+Using the Gaussian integral,
+$$\int_{\gamma_R}f(z)dz = e^{i\pi/4}\int_0^R e^{-t^2}dt
+\app[R][\infty] e^{i\pi/4}\int_0^\infty e^{-t^2}dt
+= e^{i\pi/4}\frac{\sqrt\pi}{2}$$
+
+
+We compute the second integral. On $C_R$,
+$$z = Re^{it},~0\le t\le\frac\pi4,
+\imp z^2 = R^2e^{i2t} = R^2\cos2t + iR^2\sin2t
+\imp iz^2 = iR^2\cos2t - R^2\sin2t
+\imp |f(z)| = e^{-R^2\sin2t}$$
+Now using the fact $\sin t\ge\frac{2t}{\pi}$ for $0\le t\le\frac\pi2$, we have $\sin2t\ge\frac{4t}{\pi}$ for $0\le t\le\frac\pi4$, hence $|f(z)| \le e^{-R^24t/\pi}$.
+$$\abs{\int_{C_R}f(z)dz} \le \int_{C_R}|f(z)||dz|
+\le \int_0^{\pi/4}e^{-R^24t/\pi}Rdt
+= -\frac{R\pi}{4R^2}e^{-4R^2t/\pi}\eval_0^{\pi/4}
+= -\frac{\pi}{4R}(e^{-R^2}-1)
+\app[R][\infty] 0(0-1)
+= 0$$
+
+Putting together the calculations, as we take $R\to\infty$ in equation (127.4.1),
+$$0 = I - e^{i\pi/4}\frac{\sqrt\pi}{2}
+\imp I = e^{i\pi/4}\frac{\sqrt\pi}{2} = \br{\frac{1}{\sqrt2} + i\frac{1}{\sqrt2}}\frac{\sqrt\pi}{2}
+\imp \int_0^\infty \cos(x^2)dx = \im I = \frac{\sqrt\pi}{2\sqrt2}$$
+\sep
+
+
+
+\tbf{P131.1} Set $D:=\brc{|z|<1}$, so that $\ptl D=\brc{|z|=1}$.
+
+\begin{enumerate}[label=(\roman*)]
+	
+\item Write
+$$h(z) = f(z) + g(z),
+\quad f(z) = 5z^4,
+\quad g(z) = z^2 + 2z - i$$
+On $\ptl D$,
+$$|f(z)| = 5|z|^4 = 5,
+\quad |g(z)| \le |z|^2 + 2|z| + |i| = 4
+\imp |f(z)|>|g(z)|$$
+In $D$, $f$ has a root at $z=0$ of order 4, so by Rouche's theorem $h$ has 4 roots in $D$.
+
+
+\item Write
+$$h(z) = g(z) + f(z),
+\quad g(z) = z^3,
+\quad f(z) = 8z^2 - 8z + 2$$
+On $\ptl D$, using the reverse triangle inequality,
+$$|f(z)| \ge \abs{8|z|^2 - 8|z| - |2|} = |8-8-2| = 2,
+\quad |g(z)| = |z|^3 = 1
+\imp |f(z)| > |g(z)|$$
+The roots of $f$ are
+$$0 = f(z) = 8z^2 - 8z + 2 = (4z-2)(2z-1)
+\imp z=\frac12,\frac12 \in D$$
+so by Rouche's theorem $h$ has 2 roots in $D$.
+
+
+\item Write
+$$h(z) = g(z) + f(z),
+\quad g(z) = e^z,
+\quad f(z) = 3z$$
+On $\ptl D$, $|z|=1$, so write $z=\cis t$.
+$$|f(z)| = 3|z| = 3,
+\quad |g(z)| = |e^z| = e^{\cos t} \le e^1 < 3
+\imp |f(z)| > |g(z)|$$
+In $D$, $f$ has a root at $z=0$ of order 1, so by Rouche's theorem $h$ has 1 root in $D$.
+
+\end{enumerate}
+	
+\end{document}
