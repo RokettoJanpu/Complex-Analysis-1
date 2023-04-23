@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage{amsfonts, amsthm, amsmath, amssymb, mathtools, ulem, mathrsfs, physics, esint, siunitx, tikz-cd}
+\usepackage{pdfpages, fullpage, color, microtype, cancel, textcomp, markdown, hyperref, graphicx}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\graphicspath{{./images/}}
+\usepackage[english]{babel}
+\usepackage[autostyle, english=american]{csquotes}
+\MakeOuterQuote{"}
+\usepackage{xparse}
+\usepackage{tikz}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\script}[1]{\ensuremath{\mathcalligra{#1}}}
+\newcommand{\scr}{\script r}
+
+% fonts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+\def\mbf#1{\mathbf{#1}}
+\def\tbf#1{\textbf{#1}}
+
+% common bold letters
+\def\bP{\mbb{P}}
+\def\bC{\mbb{C}}
+\def\bH{\mbb{H}}
+\def\bI{\mbb{I}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\bN{\mbb{N}}
+
+% brackets
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\lbr}[1]{\left\langle#1\right\rangle}
+
+% vectors
+\renewcommand{\i}{\hat{\imath}}
+\renewcommand{\j}{\hat{\jmath}}
+\renewcommand{\k}{\hat{k}}
+\newcommand{\proj}[2]{\text{proj}_{#2}\br{#1}}
+\newcommand{\m}[2][b]{\begin{#1matrix}#2\end{#1matrix}}
+\newcommand{\arr}[3][\sbr]{#1{\begin{array}{#2}#3\end{array}}}
+
+% misc
+\NewDocumentCommand{\seq}{O{n} O{1} O{\infty} m}{\br{#4}_{{#1}={#2}}^{#3}}
+\NewDocumentCommand{\app}{O{x} O{\infty}}{\xrightarrow{#1\to#2}}
+\newcommand{\sm}{\setminus}
+\newcommand{\sse}{\subseteq}
+\renewcommand{\ss}{\subset}
+\newcommand{\vn}{\varnothing}
+\newcommand{\lc}{\epsilon_{ijk}}
+\newcommand{\ep}{\epsilon}
+\newcommand{\vp}{\varphi}
+\renewcommand{\th}{\theta}
+\newcommand{\cjg}[1]{\overline{#1}}
+\newcommand{\inv}{^{-1}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\newcommand{\ans}{\tbf{Ans. }}
+\newcommand{\pf}{\tbf{Pf. }}
+\newcommand{\imp}{\implies}
+\newcommand{\impleft}{\reflectbox{$\implies$}}
+\newcommand{\ck}{\frac1{4\pi\ep_0}}
+\newcommand{\ckb}{4\pi\ep_0}
+\newcommand{\sto}{\longrightarrow}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\intt}{int}
+\DeclareMathOperator{\bd}{bd}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\fxn}[5]{#1:\begin{array}{rcl}#2&\longrightarrow & #3\\[-0.5mm]#4&\longmapsto &#5\end{array}}
+\newcommand{\sep}[1][.5cm]{\vspace{#1}}
+\DeclareMathOperator{\card}{card}
+\renewcommand{\ip}[2]{\lbr{#1,#2}}
+\renewcommand{\bar}{\overline}
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\Arg}{Arg}
+
+% title
+\title{Complex Analysis HW 5}
+\author{Ryan Chen}
+%\date{\today}
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+	
+\maketitle
+
+
+
+\tbf{P141.1.} \pf Recall the product expansion
+$$\cos z = \prod_{k=1}^\infty\sbr{1-\frac{4z^2}{\pi^2(2k-1)^2}}$$
+hence
+$$\cos \pi\sqrt z = \prod_{k=1}^\infty\sbr{1-\frac{4\pi^2z}{\pi^2(2(k-1/2))^2}}
+= \prod_{k=1}^\infty\sbr{1-\frac{4z}{4(k-1/2)^2}}
+= \prod_{k=1}^\infty\sbr{1-\frac{z}{(k-1/2)^2}}$$
+\sep
+
+
+
+\tbf{P144.2.} \pf Form the Blaschke product
+$$B(z) := z \cdot \frac{|-1/2|}{1/2}\frac{(z+1/2)}{1+z/2} \cdot \frac{|-3/4|}{3/4}\frac{z+3/4}{1+3z/4}
+= z \cdot \frac{z+1/2}{1+z/2} \cdot \frac{z+3/4}{1+3z/4}$$
+Then
+$$B\br{\frac12} = \frac12 \cdot \frac{1}{5/4} \cdot \frac{5/4}{11/8}
+= \frac12 \cdot \frac{8}{11}
+= \frac{4}{11}$$
+On the unit disk, $|f/B|\le 1$, so that $|f|\le |B|$, thus
+$$\abs{f\br{\frac12}} \le \abs{B\br{\frac12}} = \frac{4}{11}$$
+\sep
+
+
+
+\tbf{P151.2.} Pick the sequence $a_k:=2^k$.
+$$\sum_{k=1}^\infty\frac{1}{|a_k|^{0+1}} = \sum_{k=1}^\infty\frac{1}{2^k} < \infty$$
+so its genus is $h=0$. Its order is $\mu=0$ since for all $\ep>0$,
+$$2^\ep > 1
+\imp \frac{1}{2^\ep} < 1
+\imp \sum_{k=1}^\infty\frac{1}{|a_k|^{0+\ep}}
+= \sum_{k=1}^\infty\frac{1}{2^{k\ep}}
+< \infty$$
+Use the sequence $a_k$ and its genus $h=0$ to form the canonical product (a transcendental function)
+$$P(z) := \prod_{k=1}^\infty E_0\br{\frac{z}{a_k}}
+= \prod_{k=1}^\infty\br{1-\frac{z}{2^k}}$$
+Since the order of the sequence $a_k$ is $\mu=0$, by theorem 35 in the lecture notes the order of $P$ is at most 0, i.e. the order of $P$ is 0 itself.
+\sep
+
+
+
+\tbf{P155.2.} \pf Recall that
+$$\Gamma(z) = \frac{e^{-\gamma z}}{z}\prod_{n=1}^\infty\br{1+\frac zn}\inv e^{z/n}$$
+Taking logs,
+$$\log\Gamma(z) = -\gamma z - \log z + \sum_{n=1}^\infty\sbr{-\log(1+\frac zn)+\frac zn}$$
+Differentiating,
+$$\frac{\Gamma'(z)}{\Gamma(z)} = -\gamma - \frac1z + \sum_{n=1}^\infty\sbr{-\frac{1/n}{1+z/n}+\frac1n}
+= -\gamma - \frac1z + \sum_{n=1}^\infty\sbr{-\frac{1}{z+n}+\frac1n}$$
+Differentiating again,
+$$\dv{z}\frac{\Gamma'(z)}{\Gamma(z)} = \frac{1}{z^2} + \sum_{n=1}^\infty\frac{1}{(z+n)^2}
+= \sum_{n=0}^\infty\frac{1}{(z+n)^2}$$
+
+
+\tbf{P116.4.} \pf Write $E=\brc{z_1,\dots,z_M}$. For each $1\le j\le M$, with $f$ having a pole of finite order (say $N_j$) at $z_j$, write the principal part of $f$ at $z_j$ as
+$$P_j(z) = \sum_{n=1}^{N_j}\frac{a_{j,-n}}{(z-z_j)^n}$$
+Then
+$$R(z) := \sum_{j=1}^MP_j(z)$$
+is a sum of rational functions hence a rational function. Since each $P_j$ is analytic on $D-E$, so is $R$, and in turn so is $f-R$. To see that $f-R$ is analytic on $E$, fix $1\le j\le M$ and note that the principal part of $R$ at $z_j$ is $P_j$, so the principal part of $f-R$ at $z_j$ is $P_j-P_j=0$, hence $f-R$ is analytic at $z_j$. Thus $f-R$ is analytic on $D$.
+
+	
+\end{document}
