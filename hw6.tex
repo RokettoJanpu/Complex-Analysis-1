@@ -1,0 +1,183 @@
+\documentclass{article}
+\usepackage{amsfonts, amsthm, amsmath, amssymb, mathtools, ulem, mathrsfs, physics, esint, siunitx, tikz-cd}
+\usepackage{pdfpages, fullpage, color, microtype, cancel, textcomp, markdown, hyperref, graphicx}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\graphicspath{{./images/}}
+\usepackage[english]{babel}
+\usepackage[autostyle, english=american]{csquotes}
+\MakeOuterQuote{"}
+\usepackage{xparse}
+\usepackage{tikz}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\script}[1]{\ensuremath{\mathcalligra{#1}}}
+\newcommand{\scr}{\script r}
+
+% fonts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+\def\mbf#1{\mathbf{#1}}
+\def\tbf#1{\textbf{#1}}
+
+% common bold letters
+\def\bP{\mbb{P}}
+\def\bC{\mbb{C}}
+\def\bH{\mbb{H}}
+\def\bI{\mbb{I}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\bN{\mbb{N}}
+
+% brackets
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\sbr}[1]{\left[#1\right]}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\lbr}[1]{\left\langle#1\right\rangle}
+
+% vectors
+\renewcommand{\i}{\hat{\imath}}
+\renewcommand{\j}{\hat{\jmath}}
+\renewcommand{\k}{\hat{k}}
+\newcommand{\proj}[2]{\text{proj}_{#2}\br{#1}}
+\newcommand{\m}[2][b]{\begin{#1matrix}#2\end{#1matrix}}
+\newcommand{\arr}[3][\sbr]{#1{\begin{array}{#2}#3\end{array}}}
+
+% misc
+\NewDocumentCommand{\seq}{O{n} O{1} O{\infty} m}{\br{#4}_{{#1}={#2}}^{#3}}
+\NewDocumentCommand{\app}{O{x} O{\infty}}{\xrightarrow{#1\to#2}}
+\newcommand{\sm}{\setminus}
+\newcommand{\sse}{\subseteq}
+\renewcommand{\ss}{\subset}
+\newcommand{\vn}{\varnothing}
+\newcommand{\lc}{\epsilon_{ijk}}
+\newcommand{\ep}{\epsilon}
+\newcommand{\vp}{\varphi}
+\renewcommand{\th}{\theta}
+\newcommand{\cjg}[1]{\overline{#1}}
+\newcommand{\inv}{^{-1}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\newcommand{\ans}{\tbf{Ans. }}
+\newcommand{\pf}{\tbf{Pf. }}
+\newcommand{\imp}{\implies}
+\newcommand{\impleft}{\reflectbox{$\implies$}}
+\newcommand{\ck}{\frac1{4\pi\ep_0}}
+\newcommand{\ckb}{4\pi\ep_0}
+\newcommand{\sto}{\longrightarrow}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\intt}{int}
+\DeclareMathOperator{\bd}{bd}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\fxn}[5]{#1:\begin{array}{rcl}#2&\longrightarrow & #3\\[-0.5mm]#4&\longmapsto &#5\end{array}}
+\newcommand{\sep}[1][.5cm]{\vspace{#1}}
+\DeclareMathOperator{\card}{card}
+\renewcommand{\ip}[2]{\lbr{#1,#2}}
+\renewcommand{\bar}{\overline}
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\Arg}{Arg}
+\newcommand{\ptl}{\partial}
+
+% title
+\title{Complex Analysis HW 6}
+\author{Ryan Chen}
+%\date{\today}
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+	
+\maketitle
+
+
+
+\section*{P166.2.}
+We set $R_n:=n$ so that $R_n\to\infty$, and claim that $p_n$ has no roots in $|z|<n$.\\
+
+Write
+$$g(z) := z^np_n\br{\frac nz}
+= z^n\sum_{k=0}^n\frac{n^kz^{-k}}{k!}
+= \sum_{k=0}^n\frac{n^kz^{n-k}}{k!}
+= z^n + \frac{n}{1!}z^{n-1} + \frac{n^2}{2!}z^{n-2} + \dots + \frac{n^{n-1}}{(n-1)!}z + \frac{n^n}{n!}
+= \sum_{k=0}^n a_kz^k$$
+so that
+$$a_0 = a_1 > a_2 > \dots > a_n$$
+Then
+$$(1-z)g(z) = (a_0 + a_1z + \dots) - (a_0z + a_1z^2 + \dots)
+= a_0 + (a_1-a_0)z + (a_2-a_1)z^2 + \dots + (a_{n-1}-a_n)z^n - a_nz^{n+1}$$
+$$= a_0 - \sbr{(a_0-a_1)z + (a_1-a_2)z^2 + \dots + (a_{n-1}-a_n)z^n + a_nz^{n+1}}$$
+For $|z|\le1$, we bound the bracketed expression.
+$$|\dots| \le (a_0-a_1)|z| + (a_1-a_2)|z|^2 + \dots + (a_{n-1}-a_n)|z|^n + a_n|z|^{n+1}
+\le (a_0-a_1) + (a_1-a_2) + \dots + (a_{n-1}-a_n) + a_n
+= a_0$$
+Thus for $|z|\le1,~z\ne1$,
+$$|(1-z)g(z)| \ge \abs{a_0-|\dots|} \ge 0
+\imp |g(z)| \ge 0$$
+The above expression for $(1-z)g(z)$ equals 0 only if $z=1$. Thus $|g(z)|>0$ for $|z|\le1$, i.e. the roots of $g$ lie in $|z|>1$. Using this, we can bound the roots $z$ of $p_n$ by setting $w:=\frac nz$ and observing
+$$p_n\br{\frac nw} = 0
+\imp g(w) = w^np_n\br{\frac nw} = 0
+\imp |w| > 1
+\imp |z| < n$$
+
+
+
+\section*{P168.2.}
+\pf Suppose the negation of the result holds, i.e. there exists a compact set $K\ss R$ and a subsequence $P_{n_k}$ such that $P_{n_k}\cap K\ne\vn$. From this we can pick a pole $z_{n_k}\in K$ of $f_{n_k}$. 
+$$\sigma(f_{n_k}(z_{n_k}),f(z_{n_k})) = \sigma(\infty,f(z_{n_k}))
+= \frac{2}{[|f(z_{n_k})|^2+1]^{1/2}}
+\imp \sup_{z\in K}\sigma(f_{n_k}(z),f(z)) \ge \frac{2}{[|f(z_{n_k})|^2+1]^{1/2}} \ge 0$$
+Since $f_n\to f$ normally, $\sigma(f_n(z),f(z))\to0$ uniformly on $K$, hence
+$$\sup_{z\in K}\sigma(f_n(z),f(z))\app[n]0 
+\imp \sup_{z\in K}\sigma(f_{n_k}(z),f(z))\app[k]0$$
+The above facts, along with the squeeze theorem, give
+$$\frac{2}{[|f(z_{n_k})|^2+1]^{1/2}} \app[k] 0
+\imp f(z_{n_k}) \app[k] \infty$$
+But $f$ is analytic hence continuous on the compact set $K$, so the sequence $f(z_{n_k})$ is bounded, a contradiction.
+
+
+
+\section*{P172.1.}
+\pf $(\imp)$ Fix $\ep>0$. Since $\Phi$ is equicontinuous, there exists $\delta>0$ such that for all $t\in\bR$, $|x-y|<\delta$ implies $|\vp(x+t)-\vp(y+t)|<\ep$. It holds for $t=0$ in particular, so $|x-y|<\delta$ implies $|\vp(x)-\vp(y)|<\ep$. Thus $\vp$ is uniformly continuous.
+
+$(\impleft)$ Fix $\ep>0$. Since $\vp$ is uniformly continuous, there exists $\delta>0$ such that $|x-y|<\delta$ implies $|\vp(x)-\vp(y)|<\ep$. For all $t\in\bR$, if $|x-y|<\delta$ then $|(x+t)-(y+t)|=|x-y|<\delta$, and in turn $|\vp(x+t)-\vp(y+t)|<\ep$. Thus $\Phi$ is equicontinuous.
+
+
+
+\section*{P174.1.}
+First some preliminary computations. Writing $z=x+iy$, the function
+$$g_n(z) := \frac{|f_n'(z)|}{1+|f_n(z)|^2}
+= \frac{|ne^{nz}|}{1+|e^{nz}|^2}
+= \frac{ne^{nx}}{1+e^{2nx}}
+= \frac{n}{e^{-nx}+e^{nx}}
+= \frac{n}{2\cosh nx}$$
+attains a maximum value of $\frac n2$ at $x=0$.\\
+
+We claim that the $f_n$'s are normal precisely for domains $D$ where $0\notin D$.\\
+
+First consider the case $0\in D$. This assumption along with $D$ being open means we can pick a compact set $E$ with $0\in E\ss D$. By the preliminary computations, the sequence $\sup_{z\in E}g_n(z)=\frac n2$ is unbounded, hence the $f_n$'s are not normal.\\
+
+Now consider the case $0\notin D$. Fix a compact set $E\ss D$. From the properties of $D$ and $E$, we have $0\notin E$ and that 0 is an isolated point of $E$, giving some $r>0$ such that the disk $B(0,r)$ and $E$ are disjoint. Then for all $z=x+iy\in E$,
+$$|x| \ge r
+\imp \cosh nx \ge \cosh nr
+\imp g_n(z) \le g_n(r) =: K_n$$
+This gives $\sup_{z\in E}g_n(z) \le K_n$. The sequence $K_n$ converges to 0, hence it is bounded by some $K(E)$ independent of $n$. Thus the $f_n$'s are normal.
+
+
+
+\section*{P187.7.}
+\pf We can take $a=0,~b=1,~c=\infty$ since, otherwise, we can pick $d$ such that $ad-bd=1$, so that
+$$F(z) := \frac{af(z)+b}{cf(z)+d}$$
+is meromorphic and does not attain 0 or 1, and we can proceed replacing $f$ by $F$.\\
+
+Let $\mu$ be the elliptic modular function and set
+$$g(z) := \mu\inv(f(z)),
+\quad h(z) := i\frac{1+z}{1-z}$$
+Then $h\inv\circ g\inv\circ f$ is entire and bounded, so by Liouville's theorem it is constant. In turn $f$ is constant.
+	
+\end{document}
